@@ -10,8 +10,7 @@
         <config-file target="config.xml" parent="/*">
             <feature name="CDVWit">
                 <param name="ios-package" value="CDVWit"/>
-                <param name="startRecord" value="CDVWit"/>
-                <param name="stopRecord" value="CDVWit"/>
+                <param name="toggleCaptureVoiceIntent" value="CDVWit"/>
             </feature>
         </config-file>
 

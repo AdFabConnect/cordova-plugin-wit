@@ -20,7 +20,6 @@
 }
 
 - (void) init:(CDVInvokedUrlCommand*)command;
-- (void) startRecord:(CDVInvokedUrlCommand*)command;
-- (void) stopRecord:(CDVInvokedUrlCommand*)command;
+- (void) toggleCaptureVoiceIntent:(CDVInvokedUrlCommand*)command;
 
 @end
