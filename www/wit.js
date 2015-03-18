@@ -12,26 +12,12 @@ var Wit = {
 		);
 	},
 	
-	startRecord: function(callback) {
+	toggleCaptureVoiceIntent: function() {
 		cordova.exec(
-			callback, // success callback with param
-			function(err) { // error callback with param error
-				callback(err);
-			},
+			function () {}, // success callback with param
+			function(err) {},
 			'CDVWit', // plugin name
-			'startRecord', // method
-			[''] // no parameter
-		);
-	},
-	
-	stopRecord: function(callback) {
-		cordova.exec(
-			callback, // success callback with param
-			function(err) { // error callback with param error
-				callback(err);
-			},
-			'CDVWit', // plugin name
-			'stopRecord', // method stop
+			'toggleCaptureVoiceIntent', // method
 			[''] // no parameter
 		);
 	},
