@@ -31,7 +31,10 @@ Init method example :
  	 * action : 'witDidGetAudio', 'intent', 'witActivityDetectorStarted', 'witDidStartRecording', 'witDidStopRecording'
  	 */
 	function(e) {
-		logs.value = i + " / " + e.action + " : " + e.value + "\n" + logs.value;
+		var res = e.action + ' : ';
+		res += e.value;
+		res += "\n";
+		// do something with res !
 	}
 );
 ```
