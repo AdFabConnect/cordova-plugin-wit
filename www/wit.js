@@ -1,6 +1,6 @@
 var Wit = {
 	
-	register: function(token, callback) {
+	init: function(token, callback) {
 		cordova.exec(
 			callback, // success callback with param
 			function(err) { // error callback with param error
