@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="fr.adfab.witcordova" version="0.1.0">
+    
+    <name>WitCordova</name>
+    <description>Wit.ai plugin for cordova written in swift </description>
+    <license>Apache 2.0</license>
+    <keywords>wit,wit.ai,swift,voice,recognition</keywords>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="CDVWit">
+                <param name="ios-package" value="CDVWit"/>
+                <param name="startRecord" value="CDVWit"/>
+                <param name="stopRecord" value="CDVWit"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CDVWit.h" />
+        <source-file src="src/ios/CDVWit.m" />
+
+        <framework src="Accelerate.framework" weak="true" />
+        <framework src="QuartzCore.framework" weak="true" />
+        <framework src="CoreLocation.framework" weak="true" />
+        <framework src="AudioToolbox.framework" weak="true" />
+        <framework src="SystemConfiguration.framework" weak="true" />
+        <framework src="MobileCoreServices.framework" weak="true" />
+        <framework src="AVFoundation.framework" weak="true" />
+        
+        <framework src="src/ios/frameworks/Wit.framework" custom="true" />
+        <source-file src="src/ios/frameworks/Wit.bundle"/>
+
+        <js-module src="www/wit.js" name="Wit">
+            <clobbers target="Wit" />
+        </js-module>
+    </platform>
+</plugin>
