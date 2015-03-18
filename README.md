@@ -31,15 +31,35 @@ Init method example :
  	 * action : 'witDidGetAudio', 'intent', 'witActivityDetectorStarted', 'witDidStartRecording', 'witDidStopRecording'
  	 */
 	function(e) {
-		var res = e.action + ' : ';
-		res += e.value;
-		res += "\n";
-		// do something with res !
+		logs.value = i + " / " + e.action + " : " + e.value + "\n" + logs.value;
 	}
 );
 ```
  
 find your token [here](https://wit.ai/home)
+
+Possible callback value
+
+- action: witDidGetAudio, value: Int
+- action: witActivityDetectorStarted, value: NULL
+- action: witDidStartRecording, value: NULL
+- action: witDidStopRecording, value: NULL
+- action: intent, value: Object | String (best match intent)
+
+Intent obect value
+
+```json
+[
+  {
+    "_text" : " TRUE SPEACH VALUE ",
+    "entities" : {
+
+    },
+    "confidence" : 0.285,
+    "intent" : "BEST_MATCH_INTENT"
+  }
+]
+```
 
 toggleCaptureVoiceIntent method example :
 

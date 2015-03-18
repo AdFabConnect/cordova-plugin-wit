@@ -27,25 +27,27 @@
         return;
     }
     
-//    [self.commandDelegate runInBackground:^{
+    thread = [NSThread currentThread];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // Override point for customization after application launch.
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
         [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    
+        
         [Wit sharedInstance].accessToken = WitToken; // replace xxx by your Wit.AI access token
         //enabling detectSpeechStop will automatically stop listening the microphone when the user stop talking
         [Wit sharedInstance].detectSpeechStop = WITVadConfigDetectSpeechStop;
-    
+        
         [Wit sharedInstance].delegate = self;
-//    }];
+    });
 }
 
 - (void) toggleCaptureVoiceIntent:(CDVInvokedUrlCommand*)command {
     
-    thread = [NSThread currentThread];
-//    [self.commandDelegate runInBackground:^{
-        [[Wit sharedInstance] toggleCaptureVoiceIntent];
-//    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[Wit sharedInstance] toggleCaptureVoiceIntent];
+        });
+    });
 }
 
 -(void)witDidGraspIntent:(NSArray *)outcomes messageId:(NSString *)messageId customData:(id)customData error:(NSError *)e {
@@ -57,12 +59,25 @@
         [result setValue:@"intent" forKey:@"action"];
         [result setValue:[e localizedDescription] forKey:@"error"];
     }else {
-        NSDictionary *firstOutcome = [outcomes objectAtIndex:0];
-        NSString *intent = [firstOutcome objectForKey:@"intent"];
-        //        NSLog(@"intent : %@", intent);
         NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
+        NSData *json;
+        if ([NSJSONSerialization isValidJSONObject:outcomes]) {
+            // Serialize the dictionary
+            json = [NSJSONSerialization dataWithJSONObject:outcomes options:NSJSONWritingPrettyPrinted error:nil];
+            
+            // If no errors, let's view the JSON
+            if (json != nil) {
+                NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+                
+                [result setValue:jsonString forKey:@"value"];
+            }
+        }else {
+            NSDictionary *firstOutcome = [outcomes objectAtIndex:0];
+            NSString *intent = [firstOutcome objectForKey:@"intent"];
+            [result setValue:intent forKey:@"value"];
+        }
+        [result setValue:@"messageId" forKey:@"messageId"];
         [result setValue:@"intent" forKey:@"action"];
-        [result setValue:intent forKey:@"value"];
         
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:result];
         [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
