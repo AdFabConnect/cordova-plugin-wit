@@ -44,7 +44,7 @@ Possible callback value
 - action: witActivityDetectorStarted, value: NULL
 - action: witDidStartRecording, value: NULL
 - action: witDidStopRecording, value: NULL
-- action: intent, value: Object | String (best match intent)
+- action: intent, value: Object
 
 Intent obect value
 

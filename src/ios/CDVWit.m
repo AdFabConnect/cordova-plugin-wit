@@ -68,7 +68,6 @@
             // If no errors, let's view the JSON
             if (json != nil) {
                 NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
-                
                 [result setValue:jsonString forKey:@"value"];
             }
         }else {
