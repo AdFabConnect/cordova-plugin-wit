@@ -4,8 +4,14 @@
     <name>WitCordova</name>
     <description>Wit.ai plugin for cordova written in swift </description>
     <license>Apache 2.0</license>
+    <author>Labbé Nicolas - Adfab</author>
     <keywords>wit,wit.ai,swift,voice,recognition</keywords>
 
+    <asset src="www/microphone.min.js" target="js/microphone.min.js" />
+    <js-module src="www/wit.js" name="WitCdv">
+        <clobbers target="WitCdv" />
+    </js-module>
+    
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
             <feature name="CDVWit">
@@ -28,8 +34,23 @@
         <framework src="src/ios/frameworks/Wit.framework" custom="true" />
         <source-file src="src/ios/frameworks/Wit.bundle"/>
 
-        <js-module src="www/wit.js" name="Wit">
-            <clobbers target="Wit" />
-        </js-module>
     </platform>
+
+    <platform name="browser">
+    </platform>
+
+    <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+        <array>
+            <dict>
+                <key>NSLocationWhenInUseUsageDescription</key>
+                <string>To better resolve relative location like "Drive to University Avenue"</string>
+            </dict>
+        </array>
+        <array>
+            <dict>
+                <key>NSLocationUsageDescription</key>
+                <string>To better resolve relative location like "Drive to University Avenue"</string>
+            </dict>
+        </array>
+    </config-file>
 </plugin>
