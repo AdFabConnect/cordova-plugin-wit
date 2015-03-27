@@ -106,7 +106,7 @@ var WitCdv = {
 				this.listening = true;
 			}else {
 				this.mic.start();
-				this.listening = true;
+				this.listening = false;
 			}
 		}else {
 			cordova.exec(
