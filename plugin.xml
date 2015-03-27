@@ -39,18 +39,10 @@
     <platform name="browser">
     </platform>
 
-    <config-file target="*-Info.plist">
-        <array>
-            <dict>
-                <key>NSLocationWhenInUseUsageDescription</key>
-                <string>To better resolve relative location like "Drive to University Avenue"</string>
-            </dict>
-        </array>
-        <array>
-            <dict>
-                <key>NSLocationUsageDescription</key>
-                <string>To better resolve relative location like "Drive to University Avenue"</string>
-            </dict>
-        </array>
+    <config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
+        <string>To better resolve relative location like "Drive to University Avenue"</string>
+    </config-file>
+    <config-file target="*-Info.plist" parent="NSLocationUsageDescription">
+        <string>To better resolve relative location like "Drive to University Avenue"</string>
     </config-file>
 </plugin>
