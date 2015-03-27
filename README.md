@@ -15,9 +15,9 @@ cordova plugin add https://github.com/AdFabConnect/cordova-plugin-wit.git
 
 #Methods
 
-- Wit.init
-- Wit.toggleCaptureVoiceIntent
-- Wit.version
+- WitCdv.init
+- WitCdv.toggleCaptureVoiceIntent
+- WitCdv.version
 
 Init method example :
 
@@ -26,7 +26,7 @@ Init method example :
  * Init method
  * @param (String) token wit
  */
- Wit.init(' YOUR WIT TOKEN ',
+ WitCdv.init(' YOUR WIT TOKEN ',
  	/**
  	 * @param (Object) e {value: '', action: ''}
  	 * action : 'witDidGetAudio', 'intent', 'witActivityDetectorStarted', 'witDidStartRecording', 'witDidStopRecording'
@@ -76,7 +76,7 @@ Intent obect value
 toggleCaptureVoiceIntent method example :
 
 ```javascript
-Wit.toggleCaptureVoiceIntent()
+WitCdv.toggleCaptureVoiceIntent()
 ```
 
 #User location
