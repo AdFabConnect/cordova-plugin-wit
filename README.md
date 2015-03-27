@@ -78,17 +78,3 @@ toggleCaptureVoiceIntent method example :
 ```javascript
 Wit.toggleCaptureVoiceIntent()
 ```
-
-#User location
-
-Add configuration to your Info.plist file
-
-Open Xcode project > **Resources** folder > click **[ PROJECT NAME ]-Info.plist**
-
-Add the config below
-
-> IOS 8 and later:
-> NSLocationWhenInUseUsageDescription = To better resolve relative location like "Drive to University Avenue"
-> 
-> IOS 7:
-> NSLocationUsageDescription = To better resolve relative location like "Drive to University Avenue"
