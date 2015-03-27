@@ -1,4 +1,4 @@
-var WitCdv = {
+cordova.define("fr.adfab.witcordova.WitCdv", function(require, exports, module) { var WitCdv = {
 	devMode: false,
 	mic: null,
 	listening: false,
@@ -47,12 +47,12 @@ var WitCdv = {
     	if(entities) {
     		entities.intent = intent;
 				callback({
-					action: "witDidStopRecording",
+					action: "intent",
 					value: JSON.stringify(entities)
 				});
 			}else {
 				callback({
-					action: "witDidStopRecording",
+					action: "intent",
 					value: intent
 				});
 			}
@@ -106,7 +106,7 @@ var WitCdv = {
 				this.listening = true;
 			}else {
 				this.mic.start();
-				this.listening = false;
+				this.listening = true;
 			}
 		}else {
 			cordova.exec(
@@ -125,3 +125,4 @@ var WitCdv = {
 };
 
 module.exports = WitCdv;
+});
