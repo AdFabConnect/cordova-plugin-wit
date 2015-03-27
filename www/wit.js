@@ -41,21 +41,15 @@ cordova.define("fr.adfab.witcordova.WitCdv", function(require, exports, module) 
 				value: "Recording stopped, processing started"
 			});
     }.bind(this);
-    this.mic.onresult = function (intent, entities) {
+    this.mic.onresult = function (intent, entities, outcomes) {
     	this.listening = false
+    	var json = (typeof outcomes !== "undefined" && outcomes !== null) ? outcomes
+    		: { "msg_body": "", "outcome": {"intent": "", "entities": {},"confidence": 0.274},"msg_id": ""};
 
-    	if(entities) {
-    		entities.intent = intent;
-				callback({
-					action: "intent",
-					value: JSON.stringify(entities)
-				});
-			}else {
-				callback({
-					action: "intent",
-					value: intent
-				});
-			}
+			callback({
+				action: "intent",
+				value: json
+			});
     }.bind(this);
     this.mic.onerror = function (err) {
     	this.listening = false
