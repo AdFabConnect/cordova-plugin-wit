@@ -39,7 +39,7 @@
     <platform name="browser">
     </platform>
 
-    <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+    <config-file target="*-Info.plist">
         <array>
             <dict>
                 <key>NSLocationWhenInUseUsageDescription</key>
