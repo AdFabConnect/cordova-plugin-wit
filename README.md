@@ -83,10 +83,5 @@ Intent obect value
 toggleCaptureVoiceIntent method example :
 
 ```javascript
-<<<<<<< HEAD
-Wit.toggleCaptureVoiceIntent()
-```
-=======
 WitCdv.toggleCaptureVoiceIntent()
 ```
->>>>>>> 761acccd31d0604b0dcaa81e02fc68e0e5c5d656
