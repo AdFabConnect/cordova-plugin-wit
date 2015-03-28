@@ -25,6 +25,8 @@ Init method example :
 /**
  * Init method
  * @param (String) token wit
+ * @param (function) callback
+ * @param (bool) debug mode OPTIONAL
  */
  WitCdv.init(' YOUR WIT TOKEN ',
  	/**
@@ -34,7 +36,8 @@ Init method example :
 	function(e) {
 		// e.action
 		// e.value
-	}
+	},
+	DEBUG
 );
 ```
  
@@ -78,17 +81,3 @@ toggleCaptureVoiceIntent method example :
 ```javascript
 WitCdv.toggleCaptureVoiceIntent()
 ```
-
-#User location
-
-Add configuration to your Info.plist file
-
-Open Xcode project > **Resources** folder > click **[ PROJECT NAME ]-Info.plist**
-
-Add the config below
-
-> IOS 8 and later:
-> NSLocationWhenInUseUsageDescription = To better resolve relative location like "Drive to University Avenue"
-> 
-> IOS 7:
-> NSLocationUsageDescription = To better resolve relative location like "Drive to University Avenue"
