@@ -52,12 +52,14 @@
 
 -(void)witDidGraspIntent:(NSArray *)outcomes messageId:(NSString *)messageId customData:(id)customData error:(NSError *)e {
     if (e) {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[e localizedDescription]];
-        [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
         NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
         [result setValue:@"intent" forKey:@"action"];
+        [result setValue:@"[]" forKey:@"value"];
         [result setValue:[e localizedDescription] forKey:@"error"];
+        
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:result];
+        [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
     }else {
         NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
         NSData *json;
