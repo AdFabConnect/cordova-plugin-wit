@@ -105,6 +105,9 @@ var WitCdv = {
 			cordova.exec(
 				function(e) {
 					this.logs(e);
+					if(e.action === "intent") {
+						e.value = JSON.parse(e.value);
+					}
 					callback(e);
 				}.bind(this), // success callback with param
 				function(err) { // error callback with param error
@@ -138,13 +141,17 @@ var WitCdv = {
 
 	logs: function(obj) {
 		if(this.debug) {
-			if(typeof obj == 'string') {
+			if(typeof obj === 'string') {
 				this.debuglogs.innerHTML += "\n<br />" + obj;
 			}else if(typeof obj == 'object') {
 				if(typeof obj.action !== "undefined" && typeof obj.value !== "undefined") {
 					if(obj.action !== 'witDidGetAudio') {
 						this.debuglogs.innerHTML += "\n<br /><strong style=\"text-transform: uppercase\"> - " + obj.action + "</strong";
-						this.debuglogs.innerHTML += "\n<br />" + obj.value;
+						if(typeof obj.value === "object") {
+							this.debuglogs.innerHTML += "\n<br />" + JSON.stringify(obj.value);
+						}else if(typeof obj.value === "string") {
+							this.debuglogs.innerHTML += "\n<br />" + obj.value;
+						}
 					}
 				}
 			}
